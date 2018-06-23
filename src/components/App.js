@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { CSSTransition } from 'react-transition-group';
-import './App.scss';
+import Navbar from './Navbar';
 
 class App extends Component {
 	constructor(props) {
@@ -21,29 +20,7 @@ class App extends Component {
 
 		return (
 			<div>
-				{/* CSS Transition is only used for the mounting of the component */}
-				<CSSTransition
-					in
-					classNames="fade"
-					appear={true}
-					timeout={500}
-				>
-					<div className="navbar-wrapper">
-						{navTitles.map(title => {
-							// CSS transitions used for state changes
-							const isHighlighted = active === title ? 'active' : 'inactive';
-							return (
-								<div
-									className={isHighlighted}
-									key={title}
-									onClick={() => this.handleActive(title)}
-								>
-									{title}
-								</div>
-							);
-						})}
-					</div>
-				</CSSTransition>
+				<Navbar activeNav={active} handleActive={this.handleActive} headers={navTitles} />
 			</div>
 		);
 	}
